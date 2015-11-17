@@ -3,4 +3,3 @@
   root_dir: PLEASE PROVIDE PATH TO ANSIBLE DEVELOPER RECIPES FOLDER
   role_dir: "{{ lookup('pipe','pwd')|dirname }}"
   nodejs_version: "0.12" # 0.10 0.12
-

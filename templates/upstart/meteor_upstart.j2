@@ -1,0 +1,28 @@
+description "{{item.name}}"
+author "{{item.author}}"
+
+start on runlevel [2345]
+stop on runlevel [016]
+
+{% if item.respawn is defined %}
+respawn
+{% endif %}
+
+console log
+setuid {{item.uid | default(ansible_user_id)}}
+setgid {{item.gid | default(ansible_user_id)}}
+
+env HOME={{item.install_dir}}
+# leave as 127.0.0.1 for security
+env BIND_IP=127.0.0.1
+# the port nginx is proxying requests to
+env PORT={{item.port_number| default(3000)}}
+env HTTP_FORWARDED_COUNT=1
+env MONGO_URL={{item.mongo_db_url}}
+{% if item.meteor_settings is defined %}
+env METEOR_SETTINGS='{{ item.meteor_settings | to_json }}'
+{% endif %}
+env ROOT_URL='http://{{app_domain}}'
+env APP_JS={{item.app_js | default('main')}}
+
+exec start-stop-daemon --chdir ${HOME} --start --pid=/var/run/{{item.api_upstart_name}}.pid --exec /usr/bin/node -- ${APP_JS}

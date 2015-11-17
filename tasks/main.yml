@@ -1,2 +1,2 @@
 ---
-  - include: {{root_dir}}/tasks_nodejs.yml 
+  - include: {{root_dir}}/tasks_nodejs.yml

@@ -1,0 +1,19 @@
+description "{{item.name}}"
+author "{{item.author}}"
+
+start on runlevel [2345]
+stop on runlevel [016]
+
+{% if item.respawn is defined %}
+respawn
+{% endif %}
+
+console log
+setuid {{item.uid | default(ansible_user_id)}}
+setgid {{item.gid | default(ansible_user_id)}}
+
+env HOME={{item.install_dir}}
+env PORT={{item.port_number| default(3000)}}
+env APP_JS={{item.app_js | default('main')}}
+
+exec start-stop-daemon --chdir ${HOME} --start --make-pidfile --pid=/var/run/{{item.api_upstart_name}}.pid --exec /usr/bin/node -- ${APP_JS} {{item.extra_api_params | default('')}}
