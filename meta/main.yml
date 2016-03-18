@@ -27,6 +27,8 @@ galaxy_info:
   galaxy_tags:
     - nodejs
     - ubuntu
+  dependencies:
+  - role: Voronenko.developer_recipe
   #platforms:
   #- name: EL
   #  versions:
