@@ -27,9 +27,11 @@ galaxy_info:
         - xenial
   galaxy_tags:
     - nodejs
+    - node 0.10
+    - node 0.12
+    - node 4.x
+    - node 5.x 
     - ubuntu
-  dependencies:
-  - role: Voronenko.developer_recipe
   #platforms:
   #- name: EL
   #  versions:
