@@ -11,6 +11,7 @@
     apt: pkg={{item}} state=present
     with_items:
        - git
+       - curl
     become: yes
     tags:
       - nodejs
@@ -27,7 +28,7 @@
 
 # [VS] 2016-09-15 Chore caused by https://github.com/nodesource/distributions/issues/354
   - name: NodeJS | Import the NodeSource GPG key into apt
-#    apt_key: url=https://deb.nodesource.com/gpgkey/nodesource.gpg.key state=present
+#    apt_key: url=https://deb.nodesource.com/gpgkey/nodesource.gpg.key state=present validate_certs="no"
     shell: curl -s https://deb.nodesource.com/gpgkey/nodesource.gpg.key | apt-key add -
     become: yes
     when: ansible_os_family == "Debian" and node_present|failed
