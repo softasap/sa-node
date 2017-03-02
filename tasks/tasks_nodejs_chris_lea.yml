@@ -1,3 +1,5 @@
+# obsolete , see 
+# https://nodesource.com/blog/chris-lea-joins-forces-with-nodesource/
   
   - name: NodeJS | Check if is present
     command: test -x /usr/bin/node
