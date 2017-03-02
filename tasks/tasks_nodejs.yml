@@ -19,14 +19,16 @@
 
   - name: NodeJS | Check nodejs_version variable
     assert:
-      that: nodejs_version in [ "0.10", "0.12", "4.x", "5.x" ]
+      that: nodejs_version in [ "0.10", "0.12", "4.x", "5.x", "6.x", "7.x" ]
     when: ansible_os_family == "Debian" and node_present|failed
     tags:
        -nodejs
        -setup
 
+# [VS] 2016-09-15 Chore caused by https://github.com/nodesource/distributions/issues/354
   - name: NodeJS | Import the NodeSource GPG key into apt
-    apt_key: url=https://deb.nodesource.com/gpgkey/nodesource.gpg.key state=present
+#    apt_key: url=https://deb.nodesource.com/gpgkey/nodesource.gpg.key state=present
+    shell: curl -s https://deb.nodesource.com/gpgkey/nodesource.gpg.key | apt-key add -
     become: yes
     when: ansible_os_family == "Debian" and node_present|failed
     tags:
@@ -61,7 +63,7 @@
        -nodejs
        -setup
 
-  - name: NodeJS | Install Node.js 0.10 0.12 family
+  - name: NodeJS | Install versioned Node.js 0.10 0.12 family
     apt: pkg=nodejs={{ nodejs_version }}.* state=installed update_cache=yes
     become: yes
     when: ansible_os_family == "Debian" and nodejs_version in [ "0.10", "0.12" ]  and node_present|failed
@@ -69,7 +71,7 @@
        -nodejs
        -setup
 
-  - name: NodeJS | Install Node.js 4.x 5.x family
+  - name: NodeJS | Install default Node.js 4.x 5.x 6.X 7.X family
     apt: pkg=nodejs state=installed update_cache=yes
     become: yes
     when: ansible_os_family == "Debian" and nodejs_version not in [ "0.10", "0.12" ]  and node_present|failed
@@ -94,6 +96,7 @@
       - bower
       - grunt
       - grunt-cli
+      - david
     become: yes
     tags:
        -nodejs
