@@ -3,3 +3,4 @@
   root_dir: "{{ role_path }}"
   role_dir: "{{ role_path }}"
   nodejs_version: "6.x" # 0.10 0.12 4.x 5.x 6.x 7.x
+  option_install_default_packages: False
