@@ -1,2 +1,2 @@
 ---
-  - include: "tasks_nodejs.yml"
+  - include_tasks: "tasks_nodejs.yml"
