@@ -15,10 +15,21 @@ Usage example:
 
      - {
          role: "sa-node",
-         nodejs_version: "0.12"
+         nodejs_version: "0.12",
+         option_install_default_packages: True
        }
 
 
+```
+
+
+option_install_default_packages: 
+```
+      - gulp
+      - bower
+      - grunt  
+      - grunt-cli
+      - david
 ```
 
 
