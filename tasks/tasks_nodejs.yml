@@ -84,7 +84,7 @@
        -setup
 
   - name: NodeJS | Install default npm 6.X 7.X ... family
-    apt: pkg="{{item}}" state=installed update_cache=yes
+    apt: pkg="{{item}}" state=present update_cache=yes
     with_items:
       - npm
     become: yes
