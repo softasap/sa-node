@@ -88,7 +88,7 @@
     with_items:
       - npm
     become: yes
-    when: nodejs_version in [ "6.x", "7.x", "8.x" ]  and node_present is failed
+    when: nodejs_version in [ "6.x", "7.x", "8.x" ] and ansible_distribution_release in ["bionic"] and node_present is failed
     tags:
        -nodejs
        -setup
