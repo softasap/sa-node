@@ -1,7 +1,7 @@
 ---
 galaxy_info:
   author: vyacheslav voronenko
-  description: nodejs 0.10, 0.12
+  description: nodejs from debsource repo
   company: http://www.voronenko.info/
   # If the issue tracker for your role is not on github, uncomment the
   # next line and provide a value
@@ -27,10 +27,13 @@ galaxy_info:
         - xenial
   galaxy_tags:
     - nodejs
-    - node 0.10
-    - node 0.12
-    - node 4.x
-    - node 5.x 
+    - node0x10
+    - node0x12
+    - node4x
+    - node5x
+    - node6x
+    - node7x
+    - node8x
     - ubuntu
   #platforms:
   #- name: EL
