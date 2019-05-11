@@ -129,6 +129,16 @@
        -nodejs
        -setup
 
+  - name: NodeJS | Check if npm is present
+    command: test -x /usr/bin/npm
+    when: ansible_system == "Linux"
+    ignore_errors: yes
+    register: npm_present
+    changed_when: False
+    tags:
+        -nodejs
+        -setup
+
   - name: NodeJS | Install default npm 6.X 7.X ... 12.X family
     apt:
       name: npm
@@ -138,7 +148,7 @@
     register: result
     until: result is not failed
     become: yes
-    when: nodejs_family_major in [ "6", "7", "8", "9", "10", "11", "12" ] and node_present is failed
+    when: npm_present is failed
     tags:
        -nodejs
        -setup
