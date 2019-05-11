@@ -25,6 +25,7 @@ galaxy_info:
       versions:
         - trusty
         - xenial
+        - bionic
   galaxy_tags:
     - nodejs
     - node0x10
